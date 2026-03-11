@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(tree -L 3 /d/MyGitHub/TestProject -I '.git' 2>/dev/null || find /d/MyGitHub/TestProject -not -path \"*/.git/*\" -type d | head -20)",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/create-new-feature.ps1 -Json -Number 1 -ShortName \"seating-map\" \"Interactive Event Seating Map\")",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/create-new-feature.ps1 -Json -Number 2 -ShortName \"user-data-api\" \"User Data API with Caching and Rate Limiting\")",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/setup-plan.ps1 -Json)",
+      "WebSearch",
+      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json 2>&1)",
+      "Bash(powershell -ExecutionPolicy Bypass -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && pnpm create vite frontend --template react-ts 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && pnpm install 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && pnpm add -D vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && mkdir -p tests/hooks tests/components src/types src/constants src/hooks src/components src/utils public)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && rm -f src/App.css src/assets/react.svg public/vite.svg)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && npx tsc --noEmit 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && npx vitest run 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject/frontend\" && npx tsc --noEmit && npx vitest run 2>&1)",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && sed -i 's/- \\\\[ \\\\] T0\\\\\\(1[6-9]\\\\|2[0-9]\\\\|3[0-9]\\\\|4[0-5]\\\\\\)/- [x] T0\\\\1/g' specs/001-seating-map/tasks.md)",
+      "Bash(cd \"D:/MyGitHub/TestProject\" && sed -i 's/- \\\\[ \\\\] T0\\\\\\(4[6-9]\\\\|50\\\\\\)/- [x] T0\\\\1/g' specs/001-seating-map/tasks.md)",
+      "Bash(cd D:/MyGitHub/TestProject/frontend && pnpm install)",
+      "Bash(cd D:/MyGitHub/TestProject/frontend && pnpm build 2>&1)"
+    ]
+  }
+}

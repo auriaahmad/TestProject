@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Seat colors */
+  --color-seat-available: #10b981;
+  --color-seat-reserved: #f59e0b;
+  --color-seat-sold: #ef4444;
+  --color-seat-held: #94a3b8;
+  --color-seat-selected: #6366f1;
+
+  /* Heat-map tiers */
+  --color-tier-1: #ef4444;
+  --color-tier-2: #f59e0b;
+  --color-tier-3: #10b981;
+}
+
+/* ===== SVG SEAT STYLES (can't be pure Tailwind — SVG fill/stroke) ===== */
+.seat {
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+.seat--available {
+  fill: var(--color-seat-available);
+  cursor: pointer;
+  opacity: 0.85;
+}
+.seat--available:hover {
+  opacity: 1;
+  filter: brightness(1.1) drop-shadow(0 0 3px rgba(16, 185, 129, 0.3));
+}
+.seat--reserved { fill: var(--color-seat-reserved); cursor: not-allowed; opacity: 0.55; }
+.seat--sold { fill: var(--color-seat-sold); cursor: not-allowed; opacity: 0.45; }
+.seat--held { fill: var(--color-seat-held); cursor: not-allowed; opacity: 0.4; }
+.seat--selected {
+  fill: var(--color-seat-selected);
+  cursor: pointer;
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.35));
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+.seat:focus { outline: none; }
+.seat:focus-visible {
+  stroke: var(--color-seat-selected);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.4));
+}
+
+/* Heat-map mode overrides */
+.heatmap .seat--available[data-tier="1"],
+.heatmap .seat--selected[data-tier="1"] { fill: var(--color-tier-1); }
+.heatmap .seat--available[data-tier="2"],
+.heatmap .seat--selected[data-tier="2"] { fill: var(--color-tier-2); }
+.heatmap .seat--available[data-tier="3"],
+.heatmap .seat--selected[data-tier="3"] { fill: var(--color-tier-3); }
+
+/* SVG text labels */
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  pointer-events: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.stage-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-anchor: middle;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.stage-rect { rx: 8; ry: 8; }
+
+/* Limit notification animation */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  12% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  88% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+}
+.animate-slide-up { animation: slideUp 2.5s ease-in-out forwards; }
+
+/* Pinch-zoom touch styles */
+.touch-pan { touch-action: none; }
+
+/* Seat status change animation */
+@keyframes seatPulse {
+  0% { r: 8; opacity: 1; }
+  50% { r: 12; opacity: 0.7; }
+  100% { r: 8; opacity: 1; }
+}
+.seat-animate {
+  animation: seatPulse 0.4s ease-in-out;
+}

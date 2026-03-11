@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Venue",
+  "description": "Schema for venue.json — the seating map data source",
+  "type": "object",
+  "required": ["venueId", "name", "map", "sections"],
+  "properties": {
+    "venueId": { "type": "string" },
+    "name": { "type": "string" },
+    "map": {
+      "type": "object",
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "number", "minimum": 1 },
+        "height": { "type": "number", "minimum": 1 }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "transform", "rows"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "transform": {
+            "type": "object",
+            "required": ["x", "y", "scale"],
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" },
+              "scale": { "type": "number", "minimum": 0 }
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["index", "seats"],
+              "properties": {
+                "index": { "type": "integer", "minimum": 1 },
+                "seats": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "col", "x", "y", "priceTier", "status"],
+                    "properties": {
+                      "id": { "type": "string" },
+                      "col": { "type": "integer", "minimum": 1 },
+                      "x": { "type": "number" },
+                      "y": { "type": "number" },
+                      "priceTier": { "type": "integer", "minimum": 1 },
+                      "status": {
+                        "type": "string",
+                        "enum": ["available", "reserved", "sold", "held"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

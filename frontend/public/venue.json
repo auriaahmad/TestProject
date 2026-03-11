@@ -1,0 +1,243 @@
+{
+  "venueId": "arena-01",
+  "name": "Metropolis Arena",
+  "map": {
+    "width": 600,
+    "height": 480
+  },
+  "sections": [
+    {
+      "id": "A",
+      "label": "VIP Floor",
+      "transform": { "x": 150, "y": 180, "scale": 1 },
+      "rows": [
+        {
+          "index": 1,
+          "seats": [
+            { "id": "A-1-01", "col": 1, "x": 180, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-02", "col": 2, "x": 200, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-03", "col": 3, "x": 220, "y": 200, "priceTier": 1, "status": "reserved" },
+            { "id": "A-1-04", "col": 4, "x": 240, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-05", "col": 5, "x": 260, "y": 200, "priceTier": 1, "status": "sold" },
+            { "id": "A-1-06", "col": 6, "x": 280, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-07", "col": 7, "x": 300, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-08", "col": 8, "x": 320, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-09", "col": 9, "x": 340, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-10", "col": 10, "x": 360, "y": 200, "priceTier": 1, "status": "held" },
+            { "id": "A-1-11", "col": 11, "x": 380, "y": 200, "priceTier": 1, "status": "available" },
+            { "id": "A-1-12", "col": 12, "x": 400, "y": 200, "priceTier": 1, "status": "available" }
+          ]
+        },
+        {
+          "index": 2,
+          "seats": [
+            { "id": "A-2-01", "col": 1, "x": 170, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-02", "col": 2, "x": 190, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-03", "col": 3, "x": 210, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-04", "col": 4, "x": 230, "y": 220, "priceTier": 1, "status": "reserved" },
+            { "id": "A-2-05", "col": 5, "x": 250, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-06", "col": 6, "x": 270, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-07", "col": 7, "x": 290, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-08", "col": 8, "x": 310, "y": 220, "priceTier": 1, "status": "sold" },
+            { "id": "A-2-09", "col": 9, "x": 330, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-10", "col": 10, "x": 350, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-11", "col": 11, "x": 370, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-12", "col": 12, "x": 390, "y": 220, "priceTier": 1, "status": "available" },
+            { "id": "A-2-13", "col": 13, "x": 410, "y": 220, "priceTier": 1, "status": "available" }
+          ]
+        },
+        {
+          "index": 3,
+          "seats": [
+            { "id": "A-3-01", "col": 1, "x": 160, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-02", "col": 2, "x": 180, "y": 240, "priceTier": 1, "status": "sold" },
+            { "id": "A-3-03", "col": 3, "x": 200, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-04", "col": 4, "x": 220, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-05", "col": 5, "x": 240, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-06", "col": 6, "x": 260, "y": 240, "priceTier": 1, "status": "reserved" },
+            { "id": "A-3-07", "col": 7, "x": 280, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-08", "col": 8, "x": 300, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-09", "col": 9, "x": 320, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-10", "col": 10, "x": 340, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-11", "col": 11, "x": 360, "y": 240, "priceTier": 1, "status": "sold" },
+            { "id": "A-3-12", "col": 12, "x": 380, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-13", "col": 13, "x": 400, "y": 240, "priceTier": 1, "status": "available" },
+            { "id": "A-3-14", "col": 14, "x": 420, "y": 240, "priceTier": 1, "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "Lower Left",
+      "transform": { "x": 30, "y": 270, "scale": 1 },
+      "rows": [
+        {
+          "index": 1,
+          "seats": [
+            { "id": "B-1-01", "col": 1, "x": 60, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-02", "col": 2, "x": 80, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-03", "col": 3, "x": 100, "y": 290, "priceTier": 2, "status": "sold" },
+            { "id": "B-1-04", "col": 4, "x": 120, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-05", "col": 5, "x": 140, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-06", "col": 6, "x": 160, "y": 290, "priceTier": 2, "status": "reserved" },
+            { "id": "B-1-07", "col": 7, "x": 180, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-08", "col": 8, "x": 200, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-09", "col": 9, "x": 220, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "B-1-10", "col": 10, "x": 240, "y": 290, "priceTier": 2, "status": "available" }
+          ]
+        },
+        {
+          "index": 2,
+          "seats": [
+            { "id": "B-2-01", "col": 1, "x": 50, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-02", "col": 2, "x": 70, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-03", "col": 3, "x": 90, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-04", "col": 4, "x": 110, "y": 310, "priceTier": 2, "status": "held" },
+            { "id": "B-2-05", "col": 5, "x": 130, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-06", "col": 6, "x": 150, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-07", "col": 7, "x": 170, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-08", "col": 8, "x": 190, "y": 310, "priceTier": 2, "status": "sold" },
+            { "id": "B-2-09", "col": 9, "x": 210, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-10", "col": 10, "x": 230, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "B-2-11", "col": 11, "x": 250, "y": 310, "priceTier": 2, "status": "available" }
+          ]
+        },
+        {
+          "index": 3,
+          "seats": [
+            { "id": "B-3-01", "col": 1, "x": 40, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-02", "col": 2, "x": 60, "y": 330, "priceTier": 2, "status": "reserved" },
+            { "id": "B-3-03", "col": 3, "x": 80, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-04", "col": 4, "x": 100, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-05", "col": 5, "x": 120, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-06", "col": 6, "x": 140, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-07", "col": 7, "x": 160, "y": 330, "priceTier": 2, "status": "sold" },
+            { "id": "B-3-08", "col": 8, "x": 180, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-09", "col": 9, "x": 200, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-10", "col": 10, "x": 220, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-11", "col": 11, "x": 240, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "B-3-12", "col": 12, "x": 260, "y": 330, "priceTier": 2, "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "label": "Lower Right",
+      "transform": { "x": 330, "y": 270, "scale": 1 },
+      "rows": [
+        {
+          "index": 1,
+          "seats": [
+            { "id": "C-1-01", "col": 1, "x": 360, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-02", "col": 2, "x": 380, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-03", "col": 3, "x": 400, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-04", "col": 4, "x": 420, "y": 290, "priceTier": 2, "status": "reserved" },
+            { "id": "C-1-05", "col": 5, "x": 440, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-06", "col": 6, "x": 460, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-07", "col": 7, "x": 480, "y": 290, "priceTier": 2, "status": "sold" },
+            { "id": "C-1-08", "col": 8, "x": 500, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-09", "col": 9, "x": 520, "y": 290, "priceTier": 2, "status": "available" },
+            { "id": "C-1-10", "col": 10, "x": 540, "y": 290, "priceTier": 2, "status": "available" }
+          ]
+        },
+        {
+          "index": 2,
+          "seats": [
+            { "id": "C-2-01", "col": 1, "x": 350, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-02", "col": 2, "x": 370, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-03", "col": 3, "x": 390, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-04", "col": 4, "x": 410, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-05", "col": 5, "x": 430, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-06", "col": 6, "x": 450, "y": 310, "priceTier": 2, "status": "held" },
+            { "id": "C-2-07", "col": 7, "x": 470, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-08", "col": 8, "x": 490, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-09", "col": 9, "x": 510, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-10", "col": 10, "x": 530, "y": 310, "priceTier": 2, "status": "available" },
+            { "id": "C-2-11", "col": 11, "x": 550, "y": 310, "priceTier": 2, "status": "available" }
+          ]
+        },
+        {
+          "index": 3,
+          "seats": [
+            { "id": "C-3-01", "col": 1, "x": 340, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-02", "col": 2, "x": 360, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-03", "col": 3, "x": 380, "y": 330, "priceTier": 2, "status": "reserved" },
+            { "id": "C-3-04", "col": 4, "x": 400, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-05", "col": 5, "x": 420, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-06", "col": 6, "x": 440, "y": 330, "priceTier": 2, "status": "sold" },
+            { "id": "C-3-07", "col": 7, "x": 460, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-08", "col": 8, "x": 480, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-09", "col": 9, "x": 500, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-10", "col": 10, "x": 520, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-11", "col": 11, "x": 540, "y": 330, "priceTier": 2, "status": "available" },
+            { "id": "C-3-12", "col": 12, "x": 560, "y": 330, "priceTier": 2, "status": "available" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "label": "Upper Balcony",
+      "transform": { "x": 60, "y": 360, "scale": 1 },
+      "rows": [
+        {
+          "index": 1,
+          "seats": [
+            { "id": "D-1-01", "col": 1, "x": 90, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-02", "col": 2, "x": 110, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-03", "col": 3, "x": 130, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-04", "col": 4, "x": 150, "y": 380, "priceTier": 3, "status": "sold" },
+            { "id": "D-1-05", "col": 5, "x": 170, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-06", "col": 6, "x": 190, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-07", "col": 7, "x": 210, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-08", "col": 8, "x": 230, "y": 380, "priceTier": 3, "status": "reserved" },
+            { "id": "D-1-09", "col": 9, "x": 250, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-10", "col": 10, "x": 270, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-11", "col": 11, "x": 290, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-12", "col": 12, "x": 310, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-13", "col": 13, "x": 330, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-14", "col": 14, "x": 350, "y": 380, "priceTier": 3, "status": "sold" },
+            { "id": "D-1-15", "col": 15, "x": 370, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-16", "col": 16, "x": 390, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-17", "col": 17, "x": 410, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-18", "col": 18, "x": 430, "y": 380, "priceTier": 3, "status": "held" },
+            { "id": "D-1-19", "col": 19, "x": 450, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-20", "col": 20, "x": 470, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-21", "col": 21, "x": 490, "y": 380, "priceTier": 3, "status": "available" },
+            { "id": "D-1-22", "col": 22, "x": 510, "y": 380, "priceTier": 3, "status": "available" }
+          ]
+        },
+        {
+          "index": 2,
+          "seats": [
+            { "id": "D-2-01", "col": 1, "x": 80, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-02", "col": 2, "x": 100, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-03", "col": 3, "x": 120, "y": 400, "priceTier": 3, "status": "reserved" },
+            { "id": "D-2-04", "col": 4, "x": 140, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-05", "col": 5, "x": 160, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-06", "col": 6, "x": 180, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-07", "col": 7, "x": 200, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-08", "col": 8, "x": 220, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-09", "col": 9, "x": 240, "y": 400, "priceTier": 3, "status": "sold" },
+            { "id": "D-2-10", "col": 10, "x": 260, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-11", "col": 11, "x": 280, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-12", "col": 12, "x": 300, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-13", "col": 13, "x": 320, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-14", "col": 14, "x": 340, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-15", "col": 15, "x": 360, "y": 400, "priceTier": 3, "status": "reserved" },
+            { "id": "D-2-16", "col": 16, "x": 380, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-17", "col": 17, "x": 400, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-18", "col": 18, "x": 420, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-19", "col": 19, "x": 440, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-20", "col": 20, "x": 460, "y": 400, "priceTier": 3, "status": "sold" },
+            { "id": "D-2-21", "col": 21, "x": 480, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-22", "col": 22, "x": 500, "y": 400, "priceTier": 3, "status": "available" },
+            { "id": "D-2-23", "col": 23, "x": 520, "y": 400, "priceTier": 3, "status": "available" }
+          ]
+        }
+      ]
+    }
+  ]
+}
