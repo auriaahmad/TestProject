@@ -24,6 +24,21 @@ The WebSocket server for live seat updates starts automatically with `pnpm dev` 
 | `pnpm test:e2e` | Run 22 Playwright E2E tests |
 | `pnpm lint` | Run ESLint |
 
+## Architecture
+
+- **Tailwind CSS v4** with `@tailwindcss/vite` plugin and `dark:` variant via `@custom-variant`
+- **SVG rendering** with event delegation (single click/hover handler per section, not per-seat)
+- **React.memo + useMemo** for memoized seat layers — designed for ~15,000 seats at 60fps
+- **Custom hooks**: `useSelection`, `useLocalStorage`, `useDarkMode`, `usePinchZoom`, `useAdjacentSeats`, `useWebSocket`, `useVenueData`
+- **No state library** — React hooks only; app state is minimal (venue data, selection set, hover/focus IDs, UI toggles)
+
+## Trade-offs
+
+- **SVG over Canvas**: Chose SVG for native DOM accessibility (aria-labels, focus, tabindex). Canvas would be faster for 50k+ seats but requires a hidden DOM overlay for accessibility.
+- **No per-seat components**: All seats render as plain `<circle>` elements in a single memoized component to minimize React reconciliation overhead.
+- **Tailwind + custom CSS**: SVG `fill`/`stroke` properties can't be fully expressed in Tailwind utilities, so seat styling uses a small set of custom CSS classes alongside Tailwind for all HTML elements.
+- **WebSocket server integrated into Vite**: Runs as a Vite plugin during development — single `pnpm dev` command starts everything. In production, this would be a separate backend service.
+
 ## Features
 
 ### Core
@@ -48,20 +63,7 @@ The WebSocket server for live seat updates starts automatically with `pnpm dev` 
 - **WebSocket live updates** — server simulates seat status changes with animated transitions
 - **E2E tests** — 22 Playwright tests covering all features
 
-## Architecture
 
-- **Tailwind CSS v4** with `@tailwindcss/vite` plugin and `dark:` variant via `@custom-variant`
-- **SVG rendering** with event delegation (single click/hover handler per section, not per-seat)
-- **React.memo + useMemo** for memoized seat layers — designed for ~15,000 seats at 60fps
-- **Custom hooks**: `useSelection`, `useLocalStorage`, `useDarkMode`, `usePinchZoom`, `useAdjacentSeats`, `useWebSocket`, `useVenueData`
-- **No state library** — React hooks only; app state is minimal (venue data, selection set, hover/focus IDs, UI toggles)
-
-## Trade-offs
-
-- **SVG over Canvas**: Chose SVG for native DOM accessibility (aria-labels, focus, tabindex). Canvas would be faster for 50k+ seats but requires a hidden DOM overlay for accessibility.
-- **No per-seat components**: All seats render as plain `<circle>` elements in a single memoized component to minimize React reconciliation overhead.
-- **Tailwind + custom CSS**: SVG `fill`/`stroke` properties can't be fully expressed in Tailwind utilities, so seat styling uses a small set of custom CSS classes alongside Tailwind for all HTML elements.
-- **WebSocket server integrated into Vite**: Runs as a Vite plugin during development — single `pnpm dev` command starts everything. In production, this would be a separate backend service.
 
 ## Performance
 

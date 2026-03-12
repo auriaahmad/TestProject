@@ -1,11 +1,11 @@
-import { Router } from 'express';
+import { Router, type Router as RouterType } from 'express';
 import * as userStore from '../services/userStore.js';
 import * as cache from '../services/lruCache.js';
 import * as coalescer from '../services/requestCoalescer.js';
 import { enqueue } from '../services/requestQueue.js';
 import type { User } from '../types/index.js';
 
-export const userRouter = Router();
+export const userRouter: RouterType = Router();
 
 // GET /users/:id
 userRouter.get('/:id', async (req, res) => {

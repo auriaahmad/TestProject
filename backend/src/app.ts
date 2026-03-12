@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { rateLimiter } from './middleware/rateLimiter.js';
 import { requestTimer } from './middleware/requestTimer.js';
+import { requestLogger } from './middleware/requestLogger.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { userRouter } from './routes/userRoutes.js';
 import { cacheRouter } from './routes/cacheRoutes.js';
@@ -15,6 +16,7 @@ export function createApp(): express.Express {
 
   // Custom middleware
   app.use(requestTimer);
+  app.use(requestLogger);
   app.use(rateLimiter);
 
   // Routes
