@@ -19,6 +19,21 @@ export function createApp(): express.Express {
   app.use(requestLogger);
   app.use(rateLimiter);
 
+  // Welcome route
+  app.get('/', (_req, res) => {
+    res.json({
+      name: 'User Data API',
+      endpoints: {
+        'GET /users/:id': 'Retrieve user by ID (cached)',
+        'POST /users': 'Create a new user',
+        'DELETE /cache': 'Clear the cache',
+        'GET /cache-status': 'Cache stats',
+        'GET /metrics': 'API performance metrics',
+      },
+      try: 'GET /users/1',
+    });
+  });
+
   // Routes
   app.use('/users', userRouter);
   app.use(cacheRouter);
