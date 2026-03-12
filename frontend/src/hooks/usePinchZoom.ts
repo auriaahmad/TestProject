@@ -6,6 +6,10 @@ interface Transform {
   y: number;
 }
 
+const MIN_SCALE = 1;
+const MAX_SCALE = 6;
+const ZOOM_STEP = 0.5;
+
 export function usePinchZoom(containerRef: React.RefObject<HTMLDivElement | null>) {
   const [transform, setTransform] = useState<Transform>({ scale: 1, x: 0, y: 0 });
   const gestureState = useRef({
@@ -19,6 +23,22 @@ export function usePinchZoom(containerRef: React.RefObject<HTMLDivElement | null
 
   const reset = useCallback(() => {
     setTransform({ scale: 1, x: 0, y: 0 });
+  }, []);
+
+  const zoomIn = useCallback(() => {
+    setTransform((prev) => ({
+      ...prev,
+      scale: Math.min(MAX_SCALE, prev.scale + ZOOM_STEP),
+    }));
+  }, []);
+
+  const zoomOut = useCallback(() => {
+    setTransform((prev) => {
+      const newScale = Math.max(MIN_SCALE, prev.scale - ZOOM_STEP);
+      // Reset pan when zooming back to 1
+      if (newScale <= 1) return { scale: 1, x: 0, y: 0 };
+      return { ...prev, scale: newScale };
+    });
   }, []);
 
   useEffect(() => {
@@ -47,8 +67,8 @@ export function usePinchZoom(containerRef: React.RefObject<HTMLDivElement | null
         e.preventDefault();
         const dist = getDistance(e.touches[0], e.touches[1]);
         const newScale = Math.min(
-          4,
-          Math.max(1, gestureState.current.initialScale * (dist / gestureState.current.initialDistance)),
+          MAX_SCALE,
+          Math.max(MIN_SCALE, gestureState.current.initialScale * (dist / gestureState.current.initialDistance)),
         );
         setTransform((prev) => ({ ...prev, scale: newScale }));
       } else if (gestureState.current.isPanning && e.touches.length === 1) {
@@ -66,16 +86,63 @@ export function usePinchZoom(containerRef: React.RefObject<HTMLDivElement | null
       gestureState.current.isPanning = false;
     }
 
+    // Mouse wheel zoom
+    function onWheel(e: WheelEvent) {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? -ZOOM_STEP * 0.5 : ZOOM_STEP * 0.5;
+      setTransform((prev) => {
+        const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, prev.scale + delta));
+        if (newScale <= 1) return { scale: 1, x: 0, y: 0 };
+        return { ...prev, scale: newScale };
+      });
+    }
+
+    // Mouse drag to pan when zoomed
+    let isDragging = false;
+    let dragLastX = 0;
+    let dragLastY = 0;
+
+    function onMouseDown(e: MouseEvent) {
+      if (transform.scale > 1 && e.button === 0) {
+        isDragging = true;
+        dragLastX = e.clientX;
+        dragLastY = e.clientY;
+        el!.style.cursor = 'grabbing';
+      }
+    }
+
+    function onMouseMove(e: MouseEvent) {
+      if (!isDragging) return;
+      const dx = e.clientX - dragLastX;
+      const dy = e.clientY - dragLastY;
+      dragLastX = e.clientX;
+      dragLastY = e.clientY;
+      setTransform((prev) => ({ ...prev, x: prev.x + dx, y: prev.y + dy }));
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      if (el) el.style.cursor = '';
+    }
+
     el.addEventListener('touchstart', onTouchStart, { passive: false });
     el.addEventListener('touchmove', onTouchMove, { passive: false });
     el.addEventListener('touchend', onTouchEnd);
+    el.addEventListener('wheel', onWheel, { passive: false });
+    el.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
 
     return () => {
       el.removeEventListener('touchstart', onTouchStart);
       el.removeEventListener('touchmove', onTouchMove);
       el.removeEventListener('touchend', onTouchEnd);
+      el.removeEventListener('wheel', onWheel);
+      el.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
     };
   }, [containerRef, transform.scale]);
 
-  return { transform, reset };
+  return { transform, reset, zoomIn, zoomOut };
 }

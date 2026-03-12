@@ -9,6 +9,7 @@ interface SeatLayerProps {
   activeSeatId: string | null;
   onSeatFocus: (seatId: string | null) => void;
   onSeatHover: (seatId: string | null) => void;
+  seatRadius: number;
 }
 
 export const SeatLayer = React.memo(function SeatLayer({
@@ -18,6 +19,7 @@ export const SeatLayer = React.memo(function SeatLayer({
   activeSeatId,
   onSeatFocus,
   onSeatHover,
+  seatRadius,
 }: SeatLayerProps) {
   const groupRef = useRef<SVGGElement>(null);
 
@@ -131,7 +133,7 @@ export const SeatLayer = React.memo(function SeatLayer({
               className={className}
               cx={seat.x}
               cy={seat.y}
-              r={8}
+              r={seatRadius}
               data-seat-id={seat.id}
               data-tier={seat.priceTier}
               role="button"

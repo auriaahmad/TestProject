@@ -11,17 +11,25 @@ export function generateVenue(totalSeats = 15000): Venue {
   const rowsPerSection = 30;
   const seatsPerRow = Math.ceil(totalSeats / (sectionCount * rowsPerSection));
 
-  const mapWidth = 2400;
-  const mapHeight = 1800;
+  const seatSpacing = 20; // spacing between seat centers
+  const sectionGap = 40;  // gap between sections
+  const cols = 5;
+  const rowGroups = Math.ceil(sectionCount / cols);
+
+  const sectionWidth = seatsPerRow * seatSpacing;
+  const sectionHeight = rowsPerSection * seatSpacing;
+
+  const mapWidth = cols * sectionWidth + (cols - 1) * sectionGap + 100;
+  const mapHeight = rowGroups * sectionHeight + (rowGroups - 1) * sectionGap + 250;
 
   const sections: Section[] = [];
 
   for (let s = 0; s < sectionCount; s++) {
-    const sectionId = String.fromCharCode(65 + s); // A, B, C...
-    const col = s % 5;
-    const rowGroup = Math.floor(s / 5);
-    const sectionX = col * 460 + 50;
-    const sectionY = rowGroup * 850 + 50;
+    const sectionId = String.fromCharCode(65 + s);
+    const col = s % cols;
+    const rowGroup = Math.floor(s / cols);
+    const sectionX = col * (sectionWidth + sectionGap) + 50;
+    const sectionY = rowGroup * (sectionHeight + sectionGap) + 200;
 
     const rows: Row[] = [];
 
@@ -33,8 +41,8 @@ export function generateVenue(totalSeats = 15000): Venue {
         seats.push({
           id: seatId,
           col: c + 1,
-          x: sectionX + c * 14,
-          y: sectionY + r * 14,
+          x: sectionX + c * seatSpacing,
+          y: sectionY + r * seatSpacing,
           priceTier: s < 3 ? 1 : s < 7 ? 2 : 3,
           status: randomStatus(),
         });

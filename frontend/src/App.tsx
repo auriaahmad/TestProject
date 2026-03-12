@@ -63,7 +63,6 @@ function App() {
   const [hoveredSeatId, setHoveredSeatId] = useState<string | null>(null);
   const [showLimitNotice, setShowLimitNotice] = useState(false);
   const [adjacentCount, setAdjacentCount] = useState<number | null>(null);
-  const [adjacentInput, setAdjacentInput] = useState('');
   const [noSeatsMessage, setNoSeatsMessage] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const { findAdjacent } = useAdjacentSeats(venue);
@@ -232,35 +231,19 @@ function App() {
             <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Find Adjacent Seats</h3>
             <div className="flex flex-col gap-2">
               <div className="flex gap-2">
-                <input
-                  type="text"
-                  list="adjacent-count-options"
-                  value={adjacentInput}
+                <select
+                  value={adjacentCount ?? ''}
                   onChange={(e) => {
-                    setAdjacentInput(e.target.value);
-                    const num = parseInt(e.target.value, 10);
-                    if (!isNaN(num) && num >= 1 && num <= 8) {
-                      setAdjacentCount(num);
-                    }
-                  }}
-                  onBlur={() => {
-                    if (adjacentInput === '') {
-                      setAdjacentCount(null);
-                      return;
-                    }
-                    const num = parseInt(adjacentInput, 10);
-                    if (isNaN(num) || num < 1 || num > 8) {
-                      setAdjacentInput(adjacentCount !== null ? String(adjacentCount) : '');
-                    }
+                    const val = Number(e.target.value);
+                    setAdjacentCount(val || null);
                   }}
                   className="w-20 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  placeholder="1-8"
-                />
-                <datalist id="adjacent-count-options">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                    <option key={n} value={n} />
+                >
+                  <option value="">--</option>
+                  {[2, 3, 4, 5, 6, 7, 8].map((n) => (
+                    <option key={n} value={n}>{n}</option>
                   ))}
-                </datalist>
+                </select>
                 <button
                   onClick={handleFindAdjacent}
                   disabled={adjacentCount === null}

@@ -31,15 +31,29 @@ export const SeatMap = forwardRef<SVGSVGElement, SeatMapProps>(function SeatMap(
   ref,
 ) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { transform, reset } = usePinchZoom(wrapperRef);
+  const { transform, reset, zoomIn, zoomOut } = usePinchZoom(wrapperRef);
 
   const sectionCenters = useMemo(
     () => venue.sections.map((s) => ({ id: s.id, label: s.label, ...getSectionCenter(s) })),
     [venue],
   );
 
+  // Calculate seat radius based on venue density
+  const seatRadius = useMemo(() => {
+    let totalSeats = 0;
+    for (const section of venue.sections) {
+      for (const row of section.rows) {
+        totalSeats += row.seats.length;
+      }
+    }
+    const area = venue.map.width * venue.map.height;
+    const areaPerSeat = area / totalSeats;
+    // radius = ~40% of spacing so seats don't overlap
+    return Math.max(3, Math.min(8, Math.sqrt(areaPerSeat) * 0.4));
+  }, [venue]);
+
   const stageY = 155;
-  const stageWidth = 200;
+  const stageWidth = Math.min(300, venue.map.width * 0.15);
   const stageCenterX = venue.map.width / 2;
   const isZoomed = transform.scale > 1;
 
@@ -48,14 +62,36 @@ export const SeatMap = forwardRef<SVGSVGElement, SeatMapProps>(function SeatMap(
       ref={wrapperRef}
       className={`relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-md overflow-hidden ${heatmap ? 'heatmap' : ''}`}
     >
-      {isZoomed && (
+      {/* Zoom controls */}
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
         <button
-          onClick={reset}
-          className="absolute top-3 right-3 z-10 px-2.5 py-1 text-xs font-medium bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+          onClick={zoomIn}
+          className="w-8 h-8 flex items-center justify-center text-lg font-bold bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+          aria-label="Zoom in"
         >
-          Reset Zoom
+          +
         </button>
-      )}
+        <button
+          onClick={zoomOut}
+          disabled={transform.scale <= 1}
+          className="w-8 h-8 flex items-center justify-center text-lg font-bold bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+          aria-label="Zoom out"
+        >
+          -
+        </button>
+        {isZoomed && (
+          <button
+            onClick={reset}
+            className="w-8 h-8 flex items-center justify-center text-xs font-medium bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+            aria-label="Reset zoom"
+            title="Reset zoom"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        )}
+      </div>
       <svg
         ref={ref}
         className="w-full h-auto block touch-pan"
@@ -106,6 +142,7 @@ export const SeatMap = forwardRef<SVGSVGElement, SeatMapProps>(function SeatMap(
               activeSeatId={activeSeatId}
               onSeatFocus={onSeatFocus}
               onSeatHover={onSeatHover}
+              seatRadius={seatRadius}
             />
           </g>
         ))}
