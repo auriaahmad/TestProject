@@ -24,10 +24,14 @@ Server starts at `http://localhost:3000`.
 
 ## Testing
 
+### Unit Tests
+
 ```bash
 pnpm test        # 24 unit tests
 pnpm build       # Type-check
 ```
+
+### Manual Testing (curl)
 
 ```bash
 # First request (~200ms), second request (<10ms from cache)
@@ -38,14 +42,35 @@ curl http://localhost:3000/users/1
 curl http://localhost:3000/users/999
 
 # Create user
-curl -X POST http://localhost:3000/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Bob", "email": "bob@example.com"}'
+curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d "{\"name\": \"Bob\", \"email\": \"bob@example.com\"}"
 
 # Cache stats & metrics
 curl http://localhost:3000/cache-status
 curl http://localhost:3000/metrics
+
+# Clear cache
+curl -X DELETE http://localhost:3000/cache
 ```
+
+### Postman Testing
+
+Import these requests into Postman (or use the browser for GET requests):
+
+| Test | Method | URL | Body (JSON) |
+|------|--------|-----|-------------|
+| Get user | GET | `http://localhost:3000/users/1` | — |
+| Get missing user (404) | GET | `http://localhost:3000/users/999` | — |
+| Create user | POST | `http://localhost:3000/users` | `{"name": "Bob", "email": "bob@example.com"}` |
+| Cache stats | GET | `http://localhost:3000/cache-status` | — |
+| API metrics | GET | `http://localhost:3000/metrics` | — |
+| Clear cache | DELETE | `http://localhost:3000/cache` | — |
+
+**Key scenarios to verify:**
+
+1. **Cache performance** — GET `/users/1` twice. First response ~200ms, second <10ms.
+2. **Rate limiting** — Send 11 rapid requests to `/users/1`. The 11th returns 429.
+3. **Burst limit** — Send 6 requests in 10 seconds. The 6th returns 429.
+4. **Coalescing** — Send 5 concurrent requests for the same uncached user. All resolve in ~200ms total (not 5x200ms).
 
 ## Strategy Explanations
 
